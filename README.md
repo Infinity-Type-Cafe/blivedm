@@ -1,18 +1,16 @@
-# blivedm
+# Blivedm
+> 用于 [∞-type Café 暑期学校.](https://infinity-type-cafe.github.io/ntype-cafe-summer-school/) 的Bilibili直播间弹幕消息获取
 
-Python获取bilibili直播弹幕的库，使用WebSocket协议
 
-[协议解释](https://blog.csdn.net/xfgryujk/article/details/80306776)（有点过时了，总体是没错的）
+原项目 [blivedm](https://github.com/xfgryujk/blivedm) 基于WebSocket使用Python获取bilibili直播弹幕。
 
-基于本库开发的一个应用：[blivechat](https://github.com/xfgryujk/blivechat)
+## 依赖
+> `pip install -r requirements.txt`
 
-## 使用说明
+- Python 3.8+
+- aiohttp 3.7.4
+- Brotli 1.0.9
 
-1. 需要Python 3.8及以上版本
-2. 安装依赖
-
-    ```sh
-    pip install -r requirements.txt
-    ```
-
-3. 例程看[sample.py](./sample.py)
+## 使用
+- [./main.py](./main.py) 适用于获取直播间的弹幕和醒目弹幕消息，运行其即可。
+- [./sample.py](./sample.py) 为原项目的demo文件。
