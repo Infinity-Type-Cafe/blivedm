@@ -116,13 +116,12 @@ class BaseHandler(HandlerInterface):
         if pos != -1:
             cmd = cmd[:pos]
 
-        if cmd not in self._CMD_CALLBACK_DICT:
-            # 只有第一次遇到未知cmd时打日志
-            if cmd not in logged_unknown_cmds:
-                logger.warning(
-                    "room=%d unknown cmd=%s, command=%s", client.room_id, cmd, command
-                )
-                logged_unknown_cmds.add(cmd)
+        # 对于未知cmd，直接忽略即可（因为我们只需要弹幕消息）
+        if cmd not in self._CMD_CALLBACK_DICT and cmd not in logged_unknown_cmds:
+            # logger.warning(
+            #     "room=%d unknown cmd=%s, command=%s", client.room_id, cmd, command
+            # )
+            # logged_unknown_cmds.add(cmd)
             return
 
         callback = self._CMD_CALLBACK_DICT[cmd]
