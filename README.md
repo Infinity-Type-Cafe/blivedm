@@ -14,3 +14,9 @@
 ## 使用
 - [./main.py](./main.py) 适用于获取直播间的弹幕和醒目弹幕消息，运行其即可。
 - [./sample.py](./sample.py) 为原项目的demo文件。
+
+将直播间的id加入 [./main.py](./main.py) 中 `TEST_ROOM_IDS = []` 即可。
+
+## License
+Copyright (c) 2018 xfgryujk
+Copyright (c) 2023 Muqiu Han
