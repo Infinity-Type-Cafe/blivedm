@@ -51,13 +51,9 @@ async def run_multi_clients():
         client.start()
 
     try:
-        await asyncio.gather(*(
-            client.join() for client in clients
-        ))
+        await asyncio.gather(*(client.join() for client in clients))
     finally:
-        await asyncio.gather(*(
-            client.stop_and_close() for client in clients
-        ))
+        await asyncio.gather(*(client.stop_and_close() for client in clients))
 
 
 class MyHandler(blivedm.BaseHandler):
@@ -70,22 +66,34 @@ class MyHandler(blivedm.BaseHandler):
     #           f" uname={command['data']['uname']}")
     # _CMD_CALLBACK_DICT['INTERACT_WORD'] = __interact_word_callback  # noqa
 
-    async def _on_heartbeat(self, client: blivedm.BLiveClient, message: blivedm.HeartbeatMessage):
-        print(f'[{client.room_id}] 当前人气值：{message.popularity}')
+    async def _on_heartbeat(
+        self, client: blivedm.BLiveClient, message: blivedm.HeartbeatMessage
+    ):
+        print(f"[{client.room_id}] 当前人气值：{message.popularity}")
 
-    async def _on_danmaku(self, client: blivedm.BLiveClient, message: blivedm.DanmakuMessage):
-        print(f'[{client.room_id}] {message.uname}：{message.msg}')
+    async def _on_danmaku(
+        self, client: blivedm.BLiveClient, message: blivedm.DanmakuMessage
+    ):
+        print(f"[{client.room_id}] {message.uname}：{message.msg}")
 
     async def _on_gift(self, client: blivedm.BLiveClient, message: blivedm.GiftMessage):
-        print(f'[{client.room_id}] {message.uname} 赠送{message.gift_name}x{message.num}'
-              f' （{message.coin_type}瓜子x{message.total_coin}）')
+        print(
+            f"[{client.room_id}] {message.uname} 赠送{message.gift_name}x{message.num}"
+            f" （{message.coin_type}瓜子x{message.total_coin}）"
+        )
 
-    async def _on_buy_guard(self, client: blivedm.BLiveClient, message: blivedm.GuardBuyMessage):
-        print(f'[{client.room_id}] {message.username} 购买{message.gift_name}')
+    async def _on_buy_guard(
+        self, client: blivedm.BLiveClient, message: blivedm.GuardBuyMessage
+    ):
+        print(f"[{client.room_id}] {message.username} 购买{message.gift_name}")
 
-    async def _on_super_chat(self, client: blivedm.BLiveClient, message: blivedm.SuperChatMessage):
-        print(f'[{client.room_id}] 醒目留言 ¥{message.price} {message.uname}：{message.message}')
+    async def _on_super_chat(
+        self, client: blivedm.BLiveClient, message: blivedm.SuperChatMessage
+    ):
+        print(
+            f"[{client.room_id}] 醒目留言 ¥{message.price} {message.uname}：{message.message}"
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())
