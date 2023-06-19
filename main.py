@@ -2,10 +2,7 @@
 import asyncio
 import random
 import blivedm
-
-# 直播间ID的取值看直播间URL
-TEST_ROOM_IDS = []
-
+from sys import argv
 
 class handler(blivedm.BaseHandler):
     "弹幕消息的handler, 这里只捕获弹幕消息和醒目的弹幕, 因为我们不需要多余的信息"
@@ -24,7 +21,7 @@ class handler(blivedm.BaseHandler):
 
 
 async def run():
-    room_id = random.choice(TEST_ROOM_IDS)
+    room_id = argv[1]
 
     # 如果SSL验证失败就把ssl设为False，B站真的有过忘续证书的情况
     client = blivedm.BLiveClient(room_id, ssl=False)
